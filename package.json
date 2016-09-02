@@ -1,11 +1,11 @@
 {
   "name": "react-moment-datepicker",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "React calendar bound to moment for the locale data and timezones handling",
   "scripts": {
     "start": "webpack-dev-server --content-base demo/",
     "build": "WEBPACK_ENV=build webpack",
-    "prepublish": "npm build"
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "react-moment-proptypes": "1.2.0"
