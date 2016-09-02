@@ -26,3 +26,7 @@ Go to `localhost:8080`
     "react-popover": "0.4.4"
 }
 ```
+
+## Credits
+
+Written for [lafourchette](https://github.com/lafourchette) organization.
