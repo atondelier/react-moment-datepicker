@@ -1,0 +1,45 @@
+{
+  "name": "react-moment-datepicker",
+  "version": "0.0.1",
+  "description": "React calendar bound to moment for the locale data and timezones handling",
+  "scripts": {
+    "start": "webpack-dev-server --content-base demo/",
+    "build": "WEBPACK_ENV=build webpack",
+    "prepublish": "npm build"
+  },
+  "dependencies": {
+    "react-moment-proptypes": "1.2.0"
+  },
+  "peerDependencies": {
+    "classnames": "2.2.5",
+    "moment": "2.14.1",
+    "moment-timezone": "0.5.5",
+    "react": "15.3.1",
+    "react-addons-css-transition-group": "15.3.1",
+    "react-popover": "0.4.4"
+  },
+  "devDependencies": {
+    "babel-loader": "6.2.4",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-preset-es2015": "6.6.0",
+    "babel-preset-react": "6.5.0",
+    "babel-preset-stage-0": "6.5.0",
+    "css-loader": "0.23.1",
+    "classnames": "2.2.5",
+    "html-webpack-plugin": "1.6.1",
+    "json-loader": "0.5.4",
+    "moment": "2.14.1",
+    "moment-timezone": "0.5.5",
+    "react": "15.3.1",
+    "react-dom": "15.3.1",
+    "style-loader": "0.13.0",
+    "webpack": "1.12.13",
+    "webpack-dev-server": "1.14.1"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "./lib/react-moment-datepicker.min.js",
+  "author": "Alexis Tondelier",
+  "license": "MIT"
+}

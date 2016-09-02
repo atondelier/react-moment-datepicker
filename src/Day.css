@@ -1,0 +1,36 @@
+.day {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.day-label {
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    padding: 0;
+    background: none;
+    border: none;
+    margin: auto;
+    color: #34373F;
+    font-weight: bold;
+}
+.day-label:focus {
+    outline: none;
+}
+.day--outside .day-label {
+    color: #9F9FAB;
+}
+.day--past .day-label {
+    color: #ccc;
+}
+.day--default .day-label {
+    color: green;
+}
+.day--selected .day-label {
+    color: white;
+    background: green;
+    border-radius: 50%;
+}

@@ -1,0 +1,35 @@
+.slide-left-enter {
+    transform: translate(-100%);
+}
+.slide-left-enter.slide-left-enter-active {
+    transform: translate(0%);
+    transition: transform 100ms ease-in-out;
+}
+.slide-left-leave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0%);
+}
+.slide-left-leave.slide-left-leave-active {
+    transform: translate(100%);
+    transition: transform 100ms ease-in-out;
+}
+
+.slide-right-enter {
+    transform: translate(100%);
+}
+.slide-right-enter.slide-right-enter-active {
+    transform: translate(0%);
+    transition: transform 100ms ease-in-out;
+}
+.slide-right-leave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0%);
+}
+.slide-right-leave.slide-right-leave-active {
+    transform: translate(-100%);
+    transition: transform 100ms ease-in-out;
+}
