@@ -1,7 +1,7 @@
 {
   "name": "react-moment-datepicker",
   "version": "0.0.5",
-  "description": "React calendar bound to moment for the locale data and timezones handling",
+  "description": "React datepicker bound to moment for the locale data and timezones handling",
   "scripts": {
     "start": "webpack-dev-server --content-base demo/",
     "build": "WEBPACK_ENV=build webpack",
@@ -41,5 +41,16 @@
   ],
   "main": "./lib/react-moment-datepicker.min.js",
   "author": "Alexis Tondelier",
-  "license": "MIT"
+  "license": "MIT",
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atondelier/react-moment-datepicker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/atondelier/react-moment-datepicker/issues"
+  },
+  "homepage": "https://github.com/atondelier/react-moment-datepicker#readme"
 }

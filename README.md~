@@ -1,6 +1,6 @@
 # react-moment-datepicker
 
-React datepicker bound to moment for the locale data and timezones handling
+React calendar bound to moment for the locale data and timezones handling
 
 ## How to
 
