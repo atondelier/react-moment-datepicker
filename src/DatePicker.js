@@ -61,7 +61,7 @@ class DatePicker extends React.Component {
         const classes = classnames(
             'rm_datepicker',
             classNameModifier && `rm_datepicker--${classNameModifier}`,
-            inline && 'rm_datepicker--popover'
+            inline || 'rm_datepicker--popover'
         );
 
         const datepicker = <div className={classes}>
