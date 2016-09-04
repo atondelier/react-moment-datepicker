@@ -48,14 +48,17 @@ React datepicker bound to moment for the locale data and timezones handling
     // calendar wrapped in a popover by default, inlined if inline prop is true
     inline: React.PropTypes.bool,
 
-    // options passed to the popover component
-    popoverOptions: React.PropTypes.object,
+    // props passed to the popover component
+    popoverProps: React.PropTypes.object,
 
     // selection handler (basically update the date then provided as prop)
     onSelect: React.PropTypes.func
 
     // navigation handler
-    onNavigate: React.PropTypes.func
+    onNavigate: React.PropTypes.func,
+
+    // modifier to be concatenated with "rm_datepicker" as a classname
+    classNameModifier: React.PropTypes.string
 }
 ```
 

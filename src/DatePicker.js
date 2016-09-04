@@ -4,6 +4,7 @@ import moment from 'moment';
 import momentPropTypes from 'react-moment-proptypes';
 import 'moment-timezone';
 import React from 'react';
+import classnames from 'classnames';
 import Popover from 'react-popover';
 import Calendar from './Calendar.js';
 import './DatePicker.css';
@@ -19,7 +20,9 @@ class DatePicker extends React.Component {
         headerFormat: React.PropTypes.string,
         footerFormat: React.PropTypes.string,
         timezone: React.PropTypes.string,
-        popoverOptions: React.PropTypes.object
+        popoverProps:  React.PropTypes.object,
+        dayProps: React.PropTypes.oneOf([React.PropTypes.object, React.PropTypes.func]),
+        classNameModifier: React.PropTypes.string
     };
 
     state = {
@@ -41,43 +44,52 @@ class DatePicker extends React.Component {
             footerFormat,
             children,
             timezone,
-            popoverOptions
+            popoverProps,
+            dayProps,
+            classNameModifier
         } = this.props;
 
         const {
             preferPlace = 'below',
-            ...otherPopoverOptions
-        } = popoverOptions || {};
+            ...otherPopoverProps
+        } = popoverProps || {};
 
         const {
             isOpen
         } = this.state;
 
-        const calendar = <Calendar
-            ref="calendar"
-            defaultDate={defaultDate}
-            date={date}
-            DayComponent={DayComponent}
-            onSelect={(selectedDate) => {
+        const classes = classnames(
+            'rm_datepicker',
+            classNameModifier && `rm_datepicker--${classNameModifier}`,
+            inline && 'rm_datepicker--popover'
+        );
+
+        const datepicker = <div className={classes}>
+            <Calendar
+                ref="calendar"
+                defaultDate={defaultDate}
+                date={date}
+                DayComponent={DayComponent}
+                onSelect={(selectedDate) => {
                 onSelect(selectedDate);
                 this.refs.calendar.resetStartFromDate(selectedDate);
             }}
-            headerFormat={headerFormat}
-            footerFormat={footerFormat}
-            timezone={timezone}
-        />;
+                headerFormat={headerFormat}
+                footerFormat={footerFormat}
+                timezone={timezone}
+                dayProps={dayProps}
+            />
+        </div>;
 
         return (
-            <div className="rm_datepicker">
-                {inline ? calendar : (
+            <div>
+                {inline ? datepicker : (
                     <Popover
                         isOpen={isOpen}
-                        body={
-                            <div className="rm_datepicker--popover">{calendar}</div>
-                        }
+                        body={datepicker}
                         onOuterAction={this.hide}
                         preferPlace={preferPlace}
-                        {...otherPopoverOptions}
+                        {...otherPopoverProps}
                         refreshIntervalMs={0}
                     >
                         {children ? (
