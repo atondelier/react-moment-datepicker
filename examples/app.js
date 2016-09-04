@@ -4,8 +4,8 @@ import moment from 'moment';
 import 'moment-timezone';
 import React, {Component} from 'react';
 import {render} from 'react-dom';
-import DatePicker from '../src/DatePicker.jsx';
-import Day from '../src/Day.jsx';
+import DatePicker from '../src/DatePicker.js';
+import Day from '../src/Day.js';
 import './app.css';
 
 class App extends Component {

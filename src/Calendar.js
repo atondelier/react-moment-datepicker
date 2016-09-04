@@ -3,7 +3,7 @@
 import momentPropTypes from 'react-moment-proptypes';
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Month from './Month.jsx';
+import Month from './Month.js';
 import './Calendar.css';
 
 class Calendar extends React.Component {
@@ -11,6 +11,7 @@ class Calendar extends React.Component {
     static propTypes = {
         defaultDate: momentPropTypes.momentObj,
         onSelect: React.PropTypes.func,
+        onNavigate: React.PropTypes.func,
         date: momentPropTypes.momentObj,
         dayProps: React.PropTypes.object,
         DayComponent: React.PropTypes.func,
@@ -58,12 +59,12 @@ class Calendar extends React.Component {
         this.setState({displayedStartDate});
     }
 
-    previousStart() {
-        this.setStart(this.state.displayedStartDate.clone().subtract(1, 'month'));
-    }
-
-    nextStart() {
-        this.setStart(this.state.displayedStartDate.clone().add(1, 'month'));
+    translateStart(amount, unit) {
+        const target = this.state.displayedStartDate.clone().add(amount, unit);
+        this.setStart(target);
+        if (this.props.onNavigate && amount) {
+            this.props.onNavigate(amount < 0 ? 'previous' : 'next', unit);
+        }
     }
 
     render() {
@@ -84,23 +85,23 @@ class Calendar extends React.Component {
         } = this.state;
 
         return (
-            <div className="calendar">
-                <div className="calendar-header">
+            <div className="rm_calendar">
+                <div className="rm_calendar-header">
                     <button
-                        className="calendar-btn calendar-monthSwitch--previous"
-                        onClick={() => this.previousStart()}
-                    > </button>
+                        className="rm_calendar-btn rm_calendar-monthSwitch rm_calendar-monthSwitch--previous"
+                        onClick={() => this.translateStart(-1, 'month')}
+                    >{'<'}</button>
                     <div
-                        className="calendar-currentMonth"
+                        className="rm_calendar-currentMonth"
                     >{displayedStartDate.format(headerFormat)}</div>
                     <button
-                        className="calendar-btn calendar-monthSwitch--next"
-                        onClick={() => this.nextStart()}
-                    > </button>
+                        className="rm_calendar-btn rm_calendar-monthSwitch rm_calendar-monthSwitch--next"
+                        onClick={() => this.translateStart(1, 'month')}
+                    >{'>'}</button>
                 </div>
-                <div className="calendar-body">
+                <div className="rm_calendar-body">
                     <ReactCSSTransitionGroup
-                        transitionName={this._slideDirection ? `slide-${this._slideDirection}` : ''}
+                        transitionName={this._slideDirection ? `rm_slide-${this._slideDirection}` : ''}
                         transitionEnterTimeout={100}
                         transitionLeaveTimeout={100}
                     >
@@ -116,7 +117,7 @@ class Calendar extends React.Component {
                         />
                     </ReactCSSTransitionGroup>
                 </div>
-                <button className="calendar-footer" onClick={() => onSelect(defaultDate.clone())}>
+                <button className="rm_calendar-footer" onClick={() => onSelect(defaultDate.clone())}>
                     {defaultDate.format(footerFormat)}
                 </button>
             </div>

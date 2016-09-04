@@ -5,7 +5,8 @@ import momentPropTypes from 'react-moment-proptypes';
 import 'moment-timezone';
 import React from 'react';
 import Popover from 'react-popover';
-import Calendar from './Calendar.jsx';
+import Calendar from './Calendar.js';
+import './DatePicker.css';
 
 class DatePicker extends React.Component {
 
@@ -67,11 +68,13 @@ class DatePicker extends React.Component {
         />;
 
         return (
-            <div>
+            <div className="rm_datepicker">
                 {inline ? calendar : (
                     <Popover
                         isOpen={isOpen}
-                        body={calendar}
+                        body={
+                            <div className="rm_datepicker--popover">{calendar}</div>
+                        }
                         onOuterAction={this.hide}
                         preferPlace={preferPlace}
                         {...otherPopoverOptions}

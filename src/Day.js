@@ -8,16 +8,16 @@ import './Day.css';
 
 const Day = ({date, onClick, displayedStartDate, isSelected, isDefault}) => {
 
-    const classes = classnames('day', {
-        'day--outside': date.month() !== displayedStartDate.month(),
-        'day--past': date.diff(moment().startOf('day'), 'day') < 0,
-        'day--selected': isSelected,
-        'day--default': isDefault
+    const classes = classnames('rm_day', {
+        'rm_day--outside': date.month() !== displayedStartDate.month(),
+        'rm_day--past': date.diff(moment().startOf('day'), 'day') < 0,
+        'rm_day--selected': isSelected,
+        'rm_day--default': isDefault
     });
 
     return (
         <div onClick={onClick} className={classes}>
-            <button className="day-label">
+            <button className="rm_day-label">
                 {date.date()}
             </button>
         </div>

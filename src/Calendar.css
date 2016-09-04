@@ -1,56 +1,41 @@
-.calendar {
+.rm_calendar {
     position: relative;
     overflow: hidden;
-    width: 300px;
 }
-.calendar-header {
+.rm_calendar-header {
     text-align: center;
 }
-.calendar-body {
+.rm_calendar-body {
     position: relative;
 }
-.calendar-btn {
+.rm_calendar-btn {
     border: none;
     background: none;
     cursor: pointer;
     height: 30px;
 }
-.calendar-btn:focus {
+.rm_calendar-btn:focus {
     outline: none;
 }
-.calendar-calendarMonth {
+.rm_calendar-calendarMonth {
     border-collapse: collapse;
     width: 100%;
 }
-.calendar-monthSwitch--previous, .calendar-monthSwitch--next {
+.rm_calendar-monthSwitch--previous, .rm_calendar-monthSwitch--next {
     width: 12.5%;
 }
-.calendar-currentMonth {
+.rm_calendar-currentMonth {
     width: 75%;
     display: inline-block;
 }
-.calendar-monthSwitch--previous:before {
-    content: "<";
-}
-.calendar-monthSwitch--next:before {
-    content: ">";
-}
-.calendarMonth-cell {
-    text-align: center;
-    width: 43px;
-    cursor: pointer;
-}
-.calendarMonth-weekdayHead {
-    color: green;
-}
-.calendar-footer {
+.rm_calendar-footer {
     text-align: center;
     height: 30px;
     background: none;
     border: none;
     width: 100%;
 }
-.calendar-footer:focus {
+.rm_calendar-footer:focus {
     outline: none;
     cursor: pointer;
 }

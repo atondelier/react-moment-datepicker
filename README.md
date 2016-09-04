@@ -53,6 +53,9 @@ React datepicker bound to moment for the locale data and timezones handling
 
     // selection handler (basically update the date then provided as prop)
     onSelect: React.PropTypes.func
+
+    // navigation handler
+    onNavigate: React.PropTypes.func
 }
 ```
 

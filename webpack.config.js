@@ -4,6 +4,7 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var env = process.env.WEBPACK_ENV;
 
@@ -21,10 +22,6 @@ var config = {
                 "loader": "babel"
             },
             {
-                "test": /\.css?$/,
-                "loader": "style!css"
-            },
-            {
                 "test": /\.json$/,
                 "loader": "json"
             }
@@ -35,8 +32,7 @@ var config = {
 switch (env) {
 
     case 'build':
-        config.entry = path.resolve('src', 'DatePicker.jsx');
-        config.plugins.push(new UglifyJsPlugin({ minimize: true }));
+        config.entry = path.resolve('src', 'DatePicker.js');
         config.output.filename = libraryName + '.min.js';
         config.output.path = path.resolve('lib');
         config.output.library = 'ReactMomentDatepicker';
@@ -61,6 +57,15 @@ switch (env) {
                 }
             }
         );
+
+        config.plugins.push(new ExtractTextPlugin('/_react-moment-datepicker.scss'/*, {allChunks: false}*/));
+        config.module.loaders.push({
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract('style', 'css')
+        });
+
+        config.plugins.push(new UglifyJsPlugin({ minimize: true }));
+
         break;
 
     default:
@@ -70,6 +75,10 @@ switch (env) {
             inject: 'body',
             filename: 'index.html'
         }));
+        config.module.loaders.push({
+            "test": /\.css?$/,
+            "loader": "style!css"
+        });
         config.output.filename = libraryName + '.js';
         config.output.path = path.resolve('demo');
         config.output.publicPath = '/';

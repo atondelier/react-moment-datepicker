@@ -10,7 +10,7 @@ const Month = ({
     displayedStartDate,
     date,
     defaultDate,
-    DayComponent = require('./Day.jsx'),
+    DayComponent = require('./Day.js'),
     dayProps,
     onSelect,
     timezone
@@ -42,13 +42,13 @@ const Month = ({
 
     return (
         <div>
-            <table className="calendarMonth">
+            <table className="rm_calendarMonth">
                 <thead>
                 <tr>
                     {weekdaysShort
                         .slice(firstDayOfWeek)
                         .concat(weekdaysShort.slice(0, firstDayOfWeek))
-                        .map((weekday, columnIndex) => <th key={columnIndex} className="calendarMonth-weekdayHead">{weekday}</th>)
+                        .map((weekday, columnIndex) => <th key={columnIndex} className="rm_calendarMonth-weekdayHead">{weekday}</th>)
                     }
                 </tr>
                 </thead>
@@ -58,11 +58,12 @@ const Month = ({
                         {line.map((cellDate, columnIndex) => {
                             const isSelected = !!date && Math.abs(cellDate.diff(dateDayStart, 'hours')) < 12;
                             const isDefault = Math.abs(cellDate.diff(defaultDateDayStart, 'hours')) < 12;
+                            const currentDayProps = (typeof dayProps === 'function' ? dayProps({cellDate, rowIndex, columnIndex}) : dayProps) || {};
                             return (
                                 <td key={rowIndex * 7 + columnIndex}
-                                    className={classnames('calendarMonth-cell', {
-                                      'calendarMonth-cell--selected': isSelected,
-                                      'calendarMonth-cell--default': isDefault
+                                    className={classnames('rm_calendarMonth-cell', {
+                                      'rm_calendarMonth-cell--selected': isSelected,
+                                      'rm_calendarMonth-cell--default': isDefault
                                     })}
                                     >
                                     <DayComponent
@@ -72,7 +73,7 @@ const Month = ({
                                         isDefault={isDefault}
                                         onClick={() => onSelect(cellDate.clone())}
                                         timezone={timezone}
-                                        {...dayProps}
+                                        {...currentDayProps}
                                     />
                                 </td>
                             );

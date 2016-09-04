@@ -1,4 +1,4 @@
-.day {
+.rm_day {
     width: 40px;
     height: 40px;
     vertical-align: middle;
@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
 }
-.day-label {
+.rm_day-label {
     width: 26px;
     height: 26px;
     text-align: center;
@@ -17,19 +17,19 @@
     color: #34373F;
     font-weight: bold;
 }
-.day-label:focus {
+.rm_day-label:focus {
     outline: none;
 }
-.day--outside .day-label {
+.rm_day--outside .rm_day-label {
     color: #9F9FAB;
 }
-.day--past .day-label {
+.rm_day--past .rm_day-label {
     color: #ccc;
 }
-.day--default .day-label {
+.rm_day--default .rm_day-label {
     color: green;
 }
-.day--selected .day-label {
+.rm_day--selected .rm_day-label {
     color: white;
     background: green;
     border-radius: 50%;
