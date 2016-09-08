@@ -8,6 +8,58 @@ import DatePicker from '../src/DatePicker.js';
 import Day from '../src/Day.js';
 import './app.css';
 
+const DefaultDatePicker = ({
+    date,
+    timezone,
+    onSelect
+}) => (
+    <DatePicker
+        timezone={timezone}
+        date={date}
+        defaultDate={moment().startOf('day')}
+        DayComponent={Day}
+        headerFormat={'MMMM YYYY'}
+        footerFormat={'LL'}
+        onSelect={onSelect}
+    />
+);
+
+const InlineDatePicker = ({
+    date,
+    timezone,
+    onSelect
+}) => (
+    <DatePicker
+        inline
+        timezone={timezone}
+        date={date}
+        defaultDate={moment().startOf('day')}
+        DayComponent={Day}
+        headerFormat={'MMMM YYYY'}
+        footerFormat={'LL'}
+        onSelect={onSelect}
+    />
+);
+
+const ElementDatePicker = ({
+    date,
+    timezone,
+    onSelect,
+    children
+}) => (
+    <DatePicker
+        timezone={timezone}
+        date={date}
+        defaultDate={moment().startOf('day')}
+        DayComponent={Day}
+        headerFormat={'MMMM YYYY'}
+        footerFormat={'LL'}
+        onSelect={onSelect}
+    >
+        {children}
+    </DatePicker>
+);
+
 class App extends Component {
 
     state = {
@@ -33,16 +85,16 @@ class App extends Component {
     render() {
 
         const {
-            date
+            date,
+            locale,
+            timezone
         } = this.state;
-
-        const now = moment().startOf('day');
 
         return (
             <div>
                 <div>
                     <label>set moment locale:
-                        <select value={this.state.locale} onChange={({target:{value}}) => this.setState({locale: value})}>
+                        <select value={locale} onChange={({target:{value}}) => this.setState({locale: value})}>
                             <option value="fr">fr</option>
                             <option value="en">en</option>
                         </select> -> {moment.locale()}
@@ -50,7 +102,7 @@ class App extends Component {
                 </div>
                 <div>
                     <label>set moment timezone:
-                        <select value={this.state.timezone} onChange={({target:{value}}) => this.setState({timezone: value})}>
+                        <select value={timezone} onChange={({target:{value}}) => this.setState({timezone: value})}>
                             <option value="Europe/Paris">Europe/Paris</option>
                             <option value="America/Sao_Paulo">America/Sao_Paulo</option>
                         </select> -> {moment.defaultZone && moment.defaultZone.name}
@@ -58,51 +110,28 @@ class App extends Component {
                 </div>
                 <div style={{'height': 400}}>
                     <h2>inline</h2>
-                    <DatePicker
-                        inline
-                        timezone={this.state.timezone}
+                    <InlineDatePicker
+                        timezone={timezone}
                         date={date}
-                        defaultDate={now}
-                        DayComponent={Day}
-                        headerFormat={'MMMM YYYY'}
-                        footerFormat={'LL'}
-                        onSelect={(selectedDate) => {
-                          this.setState({
-                            date: selectedDate
-                          });
-                        }}
+                        onSelect={(date) => this.setState({date})}
                     />
                 </div>
                 <div style={{'height': 400}}>
                     <h2>editable from an element</h2>
-                    <DatePicker
-                        timezone={this.state.timezone}
+                    <ElementDatePicker
+                        timezone={timezone}
                         date={date}
-                        defaultDate={now}
-                        DayComponent={Day}
-                        headerFormat={'MMMM YYYY'}
-                        footerFormat={'LL'}
-                        onSelect={(selectedDate) => {
-                        this.setState({
-                            date: selectedDate
-                        });
-                    }}
-                    >edit the date: {date ? date.format('LLLL') : 'n/a'} (utc: {date ? date.clone().utc().format('LLLL') : 'n/a'})</DatePicker>
+                        onSelect={(date) => this.setState({date})}
+                    >
+                        edit the date: {date ? date.format('LLLL') : 'n/a'} (utc: {date ? date.clone().utc().format('LLLL') : 'n/a'})
+                    </ElementDatePicker>
                 </div>
                 <div style={{'height': 400}}>
                     <h2>editable from an input by default</h2>
-                    <DatePicker
-                        timezone={this.state.timezone}
+                    <DefaultDatePicker
+                        timezone={timezone}
                         date={date}
-                        defaultDate={now}
-                        DayComponent={Day}
-                        headerFormat={'MMMM YYYY'}
-                        footerFormat={'LL'}
-                        onSelect={(selectedDate) => {
-                        this.setState({
-                            date: selectedDate
-                        });
-                    }}
+                        onSelect={(date) => this.setState({date})}
                     />
                 </div>
             </div>

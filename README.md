@@ -21,6 +21,92 @@ React datepicker bound to moment for the locale data and timezones handling
 }
 ```
 
+### Example
+
+#### Import JavaScript
+
+```JS
+import MomentDatepicker from 'react-moment-datepicker';
+```
+
+#### Import styles
+
+```SCSS
+@import "../../node_modules/react-moment-datepicker/lib/react-moment-datepicker";
+```
+
+#### Create
+
+##### Default
+
+A default date input will be created. The date picker will open when focusing on it.
+
+```JS
+const DefaultDatePicker = ({
+    date,
+    timezone,
+    onSelect
+}) => (
+    <DatePicker
+        timezone={timezone}
+        date={date}
+        defaultDate={moment().startOf('day')}
+        DayComponent={Day}
+        headerFormat={'MMMM YYYY'}
+        footerFormat={'LL'}
+        onSelect={onSelect}
+    />
+);
+```
+
+##### With children
+
+The date picker will open when clicking on the children.
+
+```JS
+const ElementDatePicker = ({
+    date,
+    timezone,
+    onSelect,
+    children
+}) => (
+    <DatePicker
+        timezone={timezone}
+        date={date}
+        defaultDate={moment().startOf('day')}
+        DayComponent={Day}
+        headerFormat={'MMMM YYYY'}
+        footerFormat={'LL'}
+        onSelect={onSelect}
+    >
+        {children}
+    </DatePicker>
+);
+```
+
+##### Inline
+
+The date picker is inline. No popover behavior.
+
+```JS
+const InlineDatePicker = ({
+    date,
+    timezone,
+    onSelect
+}) => (
+    <DatePicker
+        inline
+        timezone={timezone}
+        date={date}
+        defaultDate={moment().startOf('day')}
+        DayComponent={Day}
+        headerFormat={'MMMM YYYY'}
+        footerFormat={'LL'}
+        onSelect={onSelect}
+    />
+);
+```
+
 ### API
 
 #### `DatePicker.propTypes`
@@ -73,6 +159,10 @@ this.refs.datepicker.show();
 // hide the datepicker
 this.refs.datepicker.hide();
 ```
+
+#### Limitations
+
+ * Only supports month view. The code is nearly ready to make "month" unit a prop.
 
 ## Contribute
 

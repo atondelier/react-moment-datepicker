@@ -1,3 +1,6 @@
+.rm_calendarMonth {
+    width: 100%;
+}
 .rm_calendarMonth-cell {
     text-align: center;
     width: 43px;
