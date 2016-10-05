@@ -1,6 +1,6 @@
 {
   "name": "react-moment-datepicker",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "React datepicker bound to moment for the locale data and timezones handling",
   "scripts": {
     "start": "webpack-dev-server --content-base demo/",
